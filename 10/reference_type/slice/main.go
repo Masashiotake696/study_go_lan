@@ -2,6 +2,25 @@ package main
 
 import "fmt"
 
+func sum(s ...int) (n int) {
+	for _, v := range s {
+		n += v
+	}
+	return
+}
+
+func pow_array(a [3]int) {
+	for i, v := range a {
+		a[i] = v * v
+	}
+}
+
+func pow_slice(a []int) {
+	for i, v := range a {
+		a[i] = v * v
+	}
+}
+
 func main() {
 	s := make([]int, 5)
 	fmt.Println(s)
@@ -50,4 +69,79 @@ func main() {
 	fmt.Printf("(D) len=%d, cap=%d\n", len(p), cap(p))
 	p = append(p, 6, 7, 8, 9)
 	fmt.Printf("(E) len=%d, cap=%d\n", len(p), cap(p))
+
+	s1 := []int{1, 2, 3, 4, 5}
+	s2 := []int{10, 11}
+	s3 := copy(s1, s2)
+	fmt.Println(s3)
+	fmt.Println("s1: ", s1)
+	fmt.Println("s2: ", s2)
+	s2 = []int{10, 11, 12, 13, 14, 15, 16}
+	s3 = copy(s1, s2)
+	fmt.Println(s3)
+	fmt.Println("s1: ", s1)
+	fmt.Println("s2: ", s2)
+
+	q := [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	r := q[2:4]
+	fmt.Println(r)
+	fmt.Println("len", len(r))
+	fmt.Println("cap", cap(r))
+	r = q[2:4:4]
+	fmt.Println(r)
+	fmt.Println("len", len(r))
+	fmt.Println("cap", cap(r))
+	r = q[2:4:6]
+	fmt.Println(r)
+	fmt.Println("len", len(r))
+	fmt.Println("cap", cap(r))
+
+	u := []string{"Apple", "Banana", "Ornage"}
+	for i, v := range u {
+		fmt.Printf("[%d] => %s\n", i, v)
+		u = append(u, "Melon")
+	}
+	fmt.Println(u)
+
+	fmt.Println(sum(1, 2, 3))
+	fmt.Println(sum(1, 2, 3, 4, 5))
+	fmt.Println(sum())
+	su := []int{1, 2, 3}
+	fmt.Println(sum(su...))
+
+	a1 := [3]int{1, 2, 3}
+	pow_array(a1)
+	fmt.Println(a1)
+	a2 := []int{1, 2, 3}
+	pow_slice(a2)
+	fmt.Println(a2)
+
+	var a3 [3]int
+	var a4 []int
+	fmt.Println(a3)
+	fmt.Println(a4)
+	fmt.Println(a4 == nil)
+
+	b1 := [5]int{1, 2, 3, 4, 5}
+	b2 := b1[:2]
+	fmt.Println(b2)
+	fmt.Println("len:", len(b2))
+	fmt.Println("cap:", cap(b2))
+	b1[1] = 0
+	fmt.Println(b2)
+
+	c1 := [3]int{1, 2, 3}
+	c2 := c1[:]
+	fmt.Println(c1)
+	fmt.Println(c2)
+	fmt.Println("len:", len(c2))
+	fmt.Println("cap:", cap(c2))
+	c2 = append(c2, 4)
+	fmt.Println(c1)
+	fmt.Println(c2)
+	fmt.Println("len:", len(c2))
+	fmt.Println("cap:", cap(c2))
+	c1[0] = 9
+	fmt.Println(c1)
+	fmt.Println(c2)
 }
