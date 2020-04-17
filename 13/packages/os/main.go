@@ -148,4 +148,29 @@ func main() {
 	if err := os.Remove("bar.txt"); err != nil {
 		log.Fatal(err)
 	}
+
+	host, err := os.Hostname()
+	fmt.Println(host)
+
+	for _, v := range os.Environ() {
+		fmt.Println(v)
+	}
+
+	fmt.Println(os.Getenv("STAY_HOME"))
+	os.Setenv("STAY_HOME", "/home")
+	fmt.Println(os.Getenv("STAY_HOME"))
+	os.Unsetenv("STAY_HOME")
+	fmt.Println(os.Getenv("STAY_HOME"))
+	if stayHome, ok := os.LookupEnv("STAY_HOME"); ok {
+		fmt.Println(stayHome)
+	} else {
+		fmt.Println("STAY HOME!!!!!!")
+	}
+
+	fmt.Println(os.Getpid())
+	fmt.Println(os.Getppid())
+	fmt.Println(os.Getuid())
+	fmt.Println(os.Geteuid())
+	fmt.Println(os.Getgid())
+	fmt.Println(os.Getegid())
 }
