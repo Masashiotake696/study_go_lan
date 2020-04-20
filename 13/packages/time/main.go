@@ -81,4 +81,13 @@ func main() {
 	fmt.Println(t14.Unix())
 
 	time.Sleep(1 * time.Second)
+
+	// ch1 := time.Tick(3 * time.Second)
+	// for {
+	// 	t := <-ch1
+	// 	fmt.Println(t)
+	// }
+
+	ch2 := time.After(3 * time.Second)
+	fmt.Println(<-ch2)
 }
