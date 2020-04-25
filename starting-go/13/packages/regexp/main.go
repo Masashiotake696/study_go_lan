@@ -93,4 +93,18 @@ func main() {
 
 	re17 := regexp.MustCompile(`、|。`)
 	fmt.Println(re17.ReplaceAllString("私は、Go言語を使用する、プログラマーです。", ""))
+
+	re18 := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
+	s := `
+00-1111-2222
+3333-44-55
+666-777-888
+9-9-9`
+	ms := re18.FindAllStringSubmatch(s, -1)
+	for _, v := range ms {
+		fmt.Println(v)
+	}
+
+	re19 := regexp.MustCompile(`(\d+)-(\d+)-(\d+)`)
+	fmt.Println(re19.ReplaceAllString("Tel: 000-111-222", "$3-$2-$1"))
 }
